@@ -3,6 +3,7 @@ import styles from './page.module.css'
 import Button from '@/components/button/Button'
 import Image from 'next/image'
 const Category = ({params}) => {
+  console.log(params);
   return (
     <div className={styles.container}>
       <h1 className={styles.catTitle}>{params.category}</h1>
@@ -10,8 +11,8 @@ const Category = ({params}) => {
       <div className={styles.content}>
          <h1 className={styles.title}>Test</h1>
          <p className={styles.desc}>Desc</p>
-         <Button text="See More" url="#"/>
-      </div>
+         <Button text="See More" url="/contact"/>
+           </div>
       <div className={styles.imgContainer}>
         <Image
         className={styles.img}
