@@ -9,7 +9,7 @@
 
 .content{
     display: flex;
-    align-item: center;
+    align-items: center;
     gap: 100px;
 }
 .imgContainer{
@@ -20,6 +20,15 @@
 }
 .image{
     object-fit: contain;
+    animation: move 3s infinite ease alternate;
+}
+@keyframes move{
+    from{
+        transform: translateY(-15px);
+    }
+    to{
+        transform: translateY(0px) scale(1.03); 
+    }
 }
 .form{
     flex: 1;
