@@ -1,16 +1,25 @@
 import React from 'react'
 import styles from './page.module.css'
 import Image from 'next/image'
-const BlogPost = () => {
+import {notFound} from 'next/navigation'
+
+async function getData(id) {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, { cache: "no-store", });
+  if (!res.ok) {
+    return notFound()
+  }
+ 
+  return res.json()
+}
+
+const BlogPost = async ({params}) => {
+  const data = await getData(params.id)
   return (
     <div className={styles.container}>
       <div className={styles.top}>
         <div className={styles.info}>
-          <h1 className={styles.title}>Lorem Ipsum is simply dummy text of the printing.</h1>
-          <p className={styles.desc}>It is a long established fact that a reader will be distracted by the readable 
-          content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less 
-          normal distribution of letters, as opposed to using 'Content here, content here', making it look like 
-          readable English.</p>
+          <h1 className={styles.title}>{data.title}</h1>
+          <p className={styles.desc}>{data.body}</p>
           <div className={styles.author}>
             <Image
              src="https://images.pexels.com/photos/919734/pexels-photo-919734.jpeg?auto=compress&cs=tinysrgb&w=600"
